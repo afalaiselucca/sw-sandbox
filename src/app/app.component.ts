@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	title = 'service-worker-sandbox';
-	constructor() {
-		console.log('Online', navigator.onLine);
-	}
 }

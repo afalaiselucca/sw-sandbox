@@ -13,17 +13,12 @@ export class OnlineStatusComponent implements OnInit {
 		this.isOnline = navigator.onLine;
 	}
 
-	@HostListener('window:fetch', ['$event'])
-	fetch(event: Event): void {
-		console.log('Fetch happened', event);
-	}
-
 	ngOnInit(): void {
 		const nativeFetch = window.fetch;
-		window.fetch = function(...args) {
-			console.log('detected fetch call');
+		window.fetch = (...args) => {
+			console.log('Detected fetch call');
 			return nativeFetch.apply(window, args);
-		}
+		};
 		this.setOnlineStatus();
 	}
 }

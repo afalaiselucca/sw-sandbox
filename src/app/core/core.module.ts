@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from './navigation/navigation.component';
-import { UpdateComponent } from './update/update.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { OnlineStatusComponent } from './online-status/online-status.component';
+import {
+	NavigationComponent,
+	OnlineStatusComponent,
+	UpdateComponent,
+} from './components';
+import { UpdateService } from './services';
 
 @NgModule({
 	declarations: [
@@ -19,6 +22,9 @@ import { OnlineStatusComponent } from './online-status/online-status.component';
 		NavigationComponent,
 		UpdateComponent,
 		OnlineStatusComponent,
+	],
+	providers: [
+		UpdateService,
 	],
 })
 export class CoreModule { }
