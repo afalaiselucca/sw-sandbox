@@ -15,13 +15,12 @@ export class UpdateService {
 		private snack: MatSnackBar,
 		private swUpdate: SwUpdate,
 	) {
-		console.log('Update service constructed', swUpdate.isEnabled);
 		if (swUpdate.isEnabled) {
 			this.hasAvailableUpdate = this.swUpdate.available
 				.pipe(
 					tap(() => this.generateSnack('Une nouvelle version est disponible', 'Activer'))
 				);
-		  this.checkForUpdates();
+			this.checkForUpdates();
 		}
 	}
 
@@ -38,11 +37,11 @@ export class UpdateService {
 			.catch(() => {
 				this.generateSnack('Erreur lors de la mise à jour', 'Réessayer');
 			});
-  }
-  
-  private checkForUpdates(): void {
-    interval(DURATION_INTERVAL_CHECK_UPDATES).subscribe(() => this.swUpdate.checkForUpdate());
-  }
+	}
+
+	private checkForUpdates(): void {
+		interval(DURATION_INTERVAL_CHECK_UPDATES).subscribe(() => this.swUpdate.checkForUpdate());
+	}
 
 	private generateSnack(message: string, actionLabel: string): void {
 		this.updateSnack = this.snack.open(message, actionLabel);
