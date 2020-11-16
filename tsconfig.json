@@ -6,6 +6,7 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "@constants/*": ["app/constants/*"],
+      "@models/*": ["app/models/*"],
       "@core/*": ["app/core/*"],
     },
     "sourceMap": true,

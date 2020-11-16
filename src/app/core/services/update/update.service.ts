@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
-import { interval, Observable } from 'rxjs';
+import { interval, Observable, of } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 
 import { DURATION_INTERVAL_CHECK_UPDATES } from '../../../constants';
@@ -9,7 +9,7 @@ import { DURATION_INTERVAL_CHECK_UPDATES } from '../../../constants';
 @Injectable()
 export class UpdateService {
 	private updateSnack: MatSnackBarRef<TextOnlySnackBar>;
-	private hasAvailableUpdate: Observable<boolean | UpdateAvailableEvent>;
+	private hasAvailableUpdate: Observable<boolean | UpdateAvailableEvent> = of(false);
 
 	constructor(
 		private snack: MatSnackBar,

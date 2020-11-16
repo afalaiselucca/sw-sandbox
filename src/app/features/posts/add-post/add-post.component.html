@@ -1,0 +1,28 @@
+<form class="u-animatedSlideInTop" [formGroup]="postForm" *ngIf="isPostFormVisible">
+	<div class="close">
+		<button type="button" class="actionIcon" (click)="hidePostForm()" luTooltip="Close">
+			<span aria-hidden="true" class="lucca-icon icon-close"></span>
+			<span class="u-mask">Close</span>
+		</button>
+	</div>
+	<div>
+		<label class="textfield mod-material">
+			<input formControlName="title" class="textfield-input" type="text" />
+			<span class="textfield-label">Title</span>
+		</label>
+	</div>
+	<div>
+		<label class="textfield mod-material">
+			<input formControlName="author" class="textfield-input" type="text" />
+			<span class="textfield-label">Author</span>
+		</label>
+	</div>
+</form>
+
+<button
+	class="button palette-primary u-marginTopStandard"
+	[disabled]="isPostFormVisible && postForm.invalid"
+	[class.mod-outline]="!isPostFormVisible"
+	(click)="addPost()"
+>Ajouter un post</button>
+

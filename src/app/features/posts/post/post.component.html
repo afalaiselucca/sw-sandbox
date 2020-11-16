@@ -1,0 +1,13 @@
+<div class="card">
+	<div class="card-content">
+		{{ post.id }}
+		<h2>{{ post.title }}</h2>
+		<p>{{ post.author }}</p>
+	</div>
+	<div class="card-remove">
+		<button type="button" class="actionIcon" (click)="removePost()" luTooltip="Remove">
+			<span aria-hidden="true" class="lucca-icon icon-trash"></span>
+			<span class="u-mask">Remove</span>
+		</button>
+	</div>
+</div>

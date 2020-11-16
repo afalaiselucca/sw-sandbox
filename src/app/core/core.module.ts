@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
 	NavigationComponent,
@@ -7,6 +8,8 @@ import {
 	UpdateComponent,
 } from './components';
 import { UpdateService } from './services';
+import { PostService } from './services/post/post.service';
+import { OnlineStatusService } from './services/online-status/online-status.service';
 
 @NgModule({
 	declarations: [
@@ -16,6 +19,7 @@ import { UpdateService } from './services';
 	],
 	imports: [
 		CommonModule,
+		HttpClientModule,
 		MatSnackBarModule,
 	],
 	exports: [
@@ -25,6 +29,8 @@ import { UpdateService } from './services';
 	],
 	providers: [
 		UpdateService,
+		PostService,
+		OnlineStatusService,
 	],
 })
 export class CoreModule { }

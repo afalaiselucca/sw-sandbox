@@ -1,0 +1,11 @@
+<app-post
+	[post]="post"
+	(postRemoved)="removePost($event)"
+	*ngFor="let post of (posts$ | async)"
+></app-post>
+
+<div class="progress mod-indeterminate" *ngIf="isLoading$ | async">
+	<div class="progress-bar"></div>
+</div>
+
+<app-add-post (postAdded)="addPost($event)"></app-add-post>
