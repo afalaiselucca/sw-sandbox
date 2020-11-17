@@ -1,8 +1,11 @@
 <div class="card">
 	<div class="card-content" *ngIf="!isEditing; else postEdition">
-		{{ post.id }}
 		<h2>{{ post.title }}</h2>
 		<p>{{ post.author }}</p>
+		<i class="lucca-icon" *ngIf="isPending$ | async; else postState">clock</i>
+		<ng-template #postState>
+			<i class="lucca-icon">{{ post.id ? 'tick' :  'sync' }}</i>
+		</ng-template>
 	</div>
 	<div class="card-actions">
 		<button type="button" class="actionIcon" (click)="editPost()" luTooltip="Edit">

@@ -50,9 +50,13 @@ export class PostsState {
 		let postIndex: number;
 		if (post.id) {
 			postIndex = this.getPostIndexById(post);
+			this.isLoading$.next(this.isOnline && true);
 			this.updatePostInList(post, postIndex);
 			this.postService.patchPost(post)
-				.subscribe((storedPost) => this.updatePostInList(storedPost, postIndex));
+				.subscribe((storedPost) => {
+					this.isLoading$.next(false);
+					this.updatePostInList(storedPost, postIndex);
+				});
 		} else {
 			const posts = this.posts$.getValue();
 			postIndex = index - posts.length;
@@ -99,10 +103,6 @@ export class PostsState {
 	private getPostIndexById(post: IPost): number {
 		const list = this.getLocalPosts();
 		return list.findIndex(localPost => localPost.id === post.id);
-	}
-
-	private isPostInList(post: IPost, list: IPost[]): boolean {
-		return this.getPostIndex(post, list) !== -1;
 	}
 
 	private getLocalPosts(): IPost[] {

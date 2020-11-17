@@ -1,19 +1,29 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { IPost } from 'src/app/models/post.model';
+import { PostsState } from '../posts.state';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-post',
 	templateUrl: './post.component.html',
 	styleUrls: ['./post.component.scss'],
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
 	@Input() post: IPost;
 	@Output() postRemoved: EventEmitter<IPost> = new EventEmitter<IPost>();
 	@Output() postEdited: EventEmitter<IPost> = new EventEmitter<IPost>();
 	isEditing: boolean;
+	isPending$: Observable<boolean>;
 
 	get isPostValid(): boolean {
 		return !!this.post.author && !!this.post.title;
+	}
+
+	constructor(private state: PostsState) {}
+
+	ngOnInit(): void {
+		this.isPending$ = this.state.isLoading$.pipe(map(loading => loading && !this.post.id));
 	}
 
 	editPost(): void {

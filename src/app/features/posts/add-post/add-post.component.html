@@ -1,14 +1,27 @@
-<app-post-form
-	*ngIf="isPostFormVisible"
-	ngDefaultControl
-	[(ngModel)]="newPost"
-	(hide)="hidePostForm()"
-></app-post-form>
+<div class="card u-animatedSlideInTop" *ngIf="isPostFormVisible">
+	<div class="card-content">
+		<app-post-form
+			ngDefaultControl
+			[(ngModel)]="newPost"
+			(hide)="hidePostForm()"
+		></app-post-form>
+	</div>
+	<div class="card-footer">
+		<div class="card-footer-right">
+			<button
+				class="button palette-success"
+				[disabled]="isPostFormVisible && !postFormValid"
+				(click)="addPost()"
+			>Create post</button>
+			<button class="button mod-link" (click)="hidePostForm()">
+				Cancel
+			</button>
+		</div>
+	</div>
+</div>
 
 <button
-	class="button palette-primary u-marginTopStandard"
-	[disabled]="isPostFormVisible && !postFormValid"
-	[class.mod-outline]="!isPostFormVisible"
+	class="button palette-primary mod-outline u-marginTopStandard"
+	*ngIf="!isPostFormVisible"
 	(click)="addPost()"
 >Create post</button>
-
