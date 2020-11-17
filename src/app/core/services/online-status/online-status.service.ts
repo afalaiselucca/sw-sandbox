@@ -7,8 +7,4 @@ export class OnlineStatusService {
 	online$ = fromEvent(window, 'online').pipe(mapTo(true));
 	offline$ = fromEvent(window, 'offline').pipe(mapTo(false));
 	onlineChanges$ = merge(this.online$, this.offline$).pipe(startWith(true));
-
-	constructor() {
-		console.log('Online status service');
-	}
 }

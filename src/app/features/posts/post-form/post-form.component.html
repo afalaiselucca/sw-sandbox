@@ -1,0 +1,20 @@
+<form class="u-animatedSlideInTop" [formGroup]="postForm">
+	<div class="close">
+		<button type="button" class="actionIcon" (click)="hidePostForm()" luTooltip="Close">
+			<span aria-hidden="true" class="lucca-icon icon-close"></span>
+			<span class="u-mask">Close</span>
+		</button>
+	</div>
+	<div>
+		<label class="textfield mod-block">
+			<input formControlName="title" class="textfield-input" type="text" />
+			<span class="textfield-label">Title</span>
+		</label>
+	</div>
+	<div>
+		<label class="textfield mod-block">
+			<input formControlName="author" class="textfield-input" type="text" />
+			<span class="textfield-label">Author</span>
+		</label>
+	</div>
+</form>

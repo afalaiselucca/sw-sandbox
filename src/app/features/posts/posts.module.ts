@@ -6,12 +6,14 @@ import { PostComponent } from './post/post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { PostsState } from './posts.state';
+import { PostFormComponent } from './post-form/post-form.component';
 
 @NgModule({
 	declarations: [
 		PostComponent,
 		PostListComponent,
 		AddPostComponent,
+		PostFormComponent,
 	],
 	imports: [
 		CommonModule,

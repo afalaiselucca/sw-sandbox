@@ -1,5 +1,41 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "author": "New post",
+      "title": "Post",
+      "id": 1
+    },
+    {
+      "author": "Test",
+      "title": "Post",
+      "id": 3
+    },
+    {
+      "author": "Stuff",
+      "title": "Title",
+      "id": 4
+    },
+    {
+      "author": "HereThere",
+      "title": "More",
+      "id": 5
+    },
+    {
+      "author": "I said",
+      "title": "Stuff",
+      "id": 7
+    },
+    {
+      "author": "Posting",
+      "title": "My sweet",
+      "id": 8
+    },
+    {
+      "author": "it",
+      "title": "More of",
+      "id": 9
+    }
+  ],
   "comments": [],
   "profile": {
     "name": "typicode"

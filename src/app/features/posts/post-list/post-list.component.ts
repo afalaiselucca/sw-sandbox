@@ -28,4 +28,8 @@ export class PostListComponent implements OnInit {
 	removePost(post: IPost): void {
 		this.postState.removePost(post);
 	}
+
+	editPost(post: IPost, index: number): void {
+		this.postState.editPost(post, index);
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IPost } from 'src/app/models/post.model';
 
 @Component({
@@ -9,8 +9,19 @@ import { IPost } from 'src/app/models/post.model';
 export class PostComponent {
 	@Input() post: IPost;
 	@Output() postRemoved: EventEmitter<IPost> = new EventEmitter<IPost>();
+	@Output() postEdited: EventEmitter<IPost> = new EventEmitter<IPost>();
+	isEditing: boolean;
 
-	constructor() { }
+	get isPostValid(): boolean {
+		return !!this.post.author && !!this.post.title;
+	}
+
+	editPost(): void {
+		if (this.isEditing && this.isPostValid) {
+			this.postEdited.emit(this.post);
+		}
+		this.isEditing = true;
+	}
 
 	removePost(): void {
 		this.postRemoved.emit(this.post);

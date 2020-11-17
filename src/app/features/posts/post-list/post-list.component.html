@@ -1,7 +1,8 @@
 <app-post
 	[post]="post"
 	(postRemoved)="removePost($event)"
-	*ngFor="let post of (posts$ | async)"
+	(postEdited)="editPost($event, i)"
+	*ngFor="let post of (posts$ | async); let i = index"
 ></app-post>
 
 <div class="progress mod-indeterminate" *ngIf="isLoading$ | async">

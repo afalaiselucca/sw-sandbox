@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest, of } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, of, forkJoin } from 'rxjs';
 import { filter, tap, shareReplay, map, catchError } from 'rxjs/operators';
 import { PostService } from 'src/app/core/services/post/post.service';
 import { IPost } from 'src/app/models';
@@ -23,6 +23,7 @@ export class PostsState {
 			)
 			.subscribe(() => {
 				this.getPosts();
+				this.submitOfflinePosts();
 			});
 	}
 
@@ -45,15 +46,25 @@ export class PostsState {
 		}
 	}
 
+	editPost(post: IPost, index?: number): void {
+		let postIndex: number;
+		if (post.id) {
+			postIndex = this.getPostIndexById(post);
+			this.updatePostInList(post, postIndex);
+			this.postService.patchPost(post)
+				.subscribe((storedPost) => this.updatePostInList(storedPost, postIndex));
+		} else {
+			const posts = this.posts$.getValue();
+			postIndex = index - posts.length;
+			this.updatePostInOfflineList(post, postIndex);
+		}
+	}
+
 	removePost(post: IPost): void {
 		if (post.id) {
 			this.isLoading$.next(this.isOnline && true);
 			this.removePostFromList(post);
 			this.postService.deletePost(post.id)
-				.pipe(catchError((err, caught) => {
-					this.addPostToList(post);
-					return of(caught);
-				}))
 				.subscribe(() => {
 					this.removePostFromList(post);
 					this.isLoading$.next(false);
@@ -71,9 +82,23 @@ export class PostsState {
 		.pipe(map(([posts, offlinePosts]) => [...posts, ...offlinePosts]));
 	}
 
+	private submitOfflinePosts(): void {
+		const posts = this.offlinePosts$.getValue();
+		forkJoin(posts.map(post => this.postService.addPost(post)))
+			.subscribe(() => {
+				this.getPosts();
+				this.offlinePosts$.next([]);
+			});
+	}
+
 	private getPostIndex(post: IPost, list: IPost[]): number {
 		const serializedPost = JSON.stringify(post);
 		return list.findIndex(searchedPost => JSON.stringify(searchedPost) === serializedPost);
+	}
+
+	private getPostIndexById(post: IPost): number {
+		const list = this.getLocalPosts();
+		return list.findIndex(localPost => localPost.id === post.id);
 	}
 
 	private isPostInList(post: IPost, list: IPost[]): boolean {
@@ -136,5 +161,11 @@ export class PostsState {
 		const posts = this.getLocalPosts();
 		posts.splice(index, 1, post);
 		this.updatePosts(posts);
+	}
+
+	private updatePostInOfflineList(post: IPost, index: number): void {
+		const posts = this.getLocalOfflinePosts();
+		posts.splice(index, 1, post);
+		this.updateOfflinePosts(posts);
 	}
 }

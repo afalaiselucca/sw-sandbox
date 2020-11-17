@@ -11,15 +11,10 @@ import { IPost } from 'src/app/models/post.model';
 export class AddPostComponent {
 	@Output() postAdded: EventEmitter<IPost> = new EventEmitter<IPost>(null);
 	isPostFormVisible: boolean;
-	postForm: FormGroup;
+	newPost: IPost;
 
-	constructor(
-		private fb: FormBuilder
-	) {
-		this.postForm = fb.group({
-			author: ['', Validators.required],
-			title: ['', Validators.required],
-		});
+	get postFormValid(): boolean {
+		return !!this.newPost?.author && !!this.newPost?.title;
 	}
 
 	displayPostForm(): void {
@@ -31,9 +26,8 @@ export class AddPostComponent {
 	}
 
 	addPost(): void {
-		const newPost = this.postForm.value;
 		if (this.isPostFormVisible) {
-			this.postAdded.emit(newPost);
+			this.postAdded.emit(this.newPost);
 			this.hidePostForm();
 			this.resetPostForm();
 		} else {
@@ -42,7 +36,7 @@ export class AddPostComponent {
 	}
 
 	private resetPostForm(): void {
-		this.postForm.reset();
+		this.newPost = null;
 	}
 
 }
