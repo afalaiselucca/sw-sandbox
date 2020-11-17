@@ -7,7 +7,7 @@
 			<i class="lucca-icon">{{ post.id ? 'tick' :  'sync' }}</i>
 		</ng-template>
 	</div>
-	<div class="card-actions">
+	<div class="card-actions" *ngIf="!isEditing">
 		<button type="button" class="actionIcon" (click)="editPost()" luTooltip="Edit">
 			<span aria-hidden="true" class="lucca-icon icon-edit"></span>
 			<span class="u-mask">Edit</span>
