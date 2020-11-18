@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { IPost } from 'src/app/models/post.model';
-import { PostsState } from '../posts.state';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { IPost } from '@models/index';
+import { PostsState } from '../posts.state';
 
 @Component({
 	selector: 'app-post',

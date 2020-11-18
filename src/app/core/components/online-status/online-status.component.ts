@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { OnlineStatusService } from '../../services/online-status/online-status.service';
 import { Observable } from 'rxjs';
+
+import { OnlineStatusService } from '../../services/online-status/online-status.service';
 
 @Component({
 	selector: 'app-online-status',
@@ -8,9 +9,7 @@ import { Observable } from 'rxjs';
 	styleUrls: ['./online-status.component.scss'],
 })
 export class OnlineStatusComponent {
-	isOnline$: Observable<boolean>;
+	isOnline$: Observable<boolean> = this.onlineStatusService.onlineChanges$;
 
-	constructor(private onlineStatusService: OnlineStatusService) {
-		this.isOnline$ = onlineStatusService.onlineChanges$;
-	}
+	constructor(private onlineStatusService: OnlineStatusService) {}
 }

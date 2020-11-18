@@ -5,9 +5,9 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@constants/*": ["app/constants/*"],
-      "@models/*": ["app/models/*"],
-      "@core/*": ["app/core/*"],
+      "@constants/*": ["./src/app/constants/index"],
+      "@models/*": ["./src/app/models/index"],
+      "@core/*": ["./src/app/core/index"],
     },
     "sourceMap": true,
     "declaration": false,

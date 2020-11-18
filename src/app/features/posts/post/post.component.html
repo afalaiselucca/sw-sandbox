@@ -8,11 +8,21 @@
 		</ng-template>
 	</div>
 	<div class="card-actions" *ngIf="!isEditing">
-		<button type="button" class="actionIcon" (click)="editPost()" luTooltip="Edit">
+		<button
+			type="button"
+			class="actionIcon"
+			(click)="editPost()"
+			luTooltip="Edit"
+		>
 			<span aria-hidden="true" class="lucca-icon icon-edit"></span>
 			<span class="u-mask">Edit</span>
 		</button>
-		<button type="button" class="actionIcon" (click)="removePost()" luTooltip="Remove">
+		<button
+			type="button"
+			class="actionIcon"
+			(click)="removePost()"
+			luTooltip="Remove"
+		>
 			<span aria-hidden="true" class="lucca-icon icon-trash"></span>
 			<span class="u-mask">Remove</span>
 		</button>
@@ -21,7 +31,11 @@
 
 <ng-template #postEdition>
 	<div class="card-content">
-		<app-post-form [(ngModel)]="post" (hide)="isEditing = false" ngDefaultControl></app-post-form>
+		<app-post-form
+			[(ngModel)]="post"
+			(hide)="isEditing = false"
+			ngDefaultControl
+		></app-post-form>
 
 		<button
 			class="button palette-primary u-marginTopStandard"

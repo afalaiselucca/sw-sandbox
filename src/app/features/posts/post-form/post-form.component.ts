@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormGroup, Validators, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IPost } from 'src/app/models';
 import { Subscription } from 'rxjs';
+
+import { IPost } from '@models/index';
 
 @Component({
 	selector: 'app-post-form',

@@ -1,2 +1,3 @@
-export * from './navigation/navigation.component';
-export * from './update/update.component';
+export * from './components';
+export * from './services';
+export { CoreModule } from './core.module';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IPost } from 'src/app/models/post.model';
+import { IPost } from '@models/index';
 import { PostsState } from '../posts.state';
 
 @Component({

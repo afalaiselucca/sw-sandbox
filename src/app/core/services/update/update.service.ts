@@ -4,7 +4,7 @@ import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { interval, Observable, of } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 
-import { DURATION_INTERVAL_CHECK_UPDATES } from '../../../constants';
+import { DURATION_INTERVAL_CHECK_UPDATES } from '@constants/index';
 
 @Injectable()
 export class UpdateService {

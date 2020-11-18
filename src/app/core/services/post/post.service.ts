@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LOCAL_API } from 'src/app/constants';
-import { IPost } from 'src/app/models';
+
+import { LOCAL_API } from '@constants/index';
+import { IPost } from '@models/index';
 
 @Injectable()
 export class PostService {

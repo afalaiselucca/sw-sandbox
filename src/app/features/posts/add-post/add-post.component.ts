@@ -1,8 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PostService } from 'src/app/core/services/post/post.service';
-import { IPost } from 'src/app/models/post.model';
-import { PostsState } from '../posts.state';
+
+import { IPost } from '@models/index';
 
 @Component({
 	selector: 'app-add-post',
